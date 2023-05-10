@@ -85,6 +85,15 @@ public class ProfileForm extends BaseForm{
         Nom.setUIID("TextFieldBlack");
         addStringValue("Prenom", Prenom);
         
+         TextField Telephone = new TextField(us);
+        Nom.setUIID("TextFieldBlack");
+        addStringValue("Telephone", Telephone);
+        
+         TextField Cin = new TextField(us);
+        Nom.setUIID("TextFieldBlack");
+        addStringValue("Cin", Cin);
+       
+        
         TextField Email = new TextField(SessionManager.getEmail(), "E-Mail", 20, TextField.EMAILADDR);
         Email.setUIID("TextFieldBlack");
         addStringValue("E-Mail", Email);
@@ -101,7 +110,7 @@ public class ProfileForm extends BaseForm{
         modiff.addActionListener((ActionEvent edit)->{
         InfiniteProgress ip = new InfiniteProgress();
         //final Dialog ipDlg = ip.showInifinieteBlooking();
-            UserService.EditUser(SessionManager.getId(), Nom.getText(), Prenom.getText(),Password.getText(), Email.getText());
+        UserService.EditUser(SessionManager.getId(), Nom.getText(), Prenom.getText(), Telephone.getText(), SessionManager.getCin(), Password.getText(), Email.getText());
         SessionManager.setNom(Nom.getText());
         SessionManager.setPassword(Password.getText());
         SessionManager.setEmail(Email.getText());

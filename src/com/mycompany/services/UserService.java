@@ -157,22 +157,19 @@ public class UserService {
     
     
     
-    
-    
-    
-    
-    
-      public static void EditUser(int id, String Nom,String Prenom, String Password, String Email) {
-        String url = Statics.BASE_URL+"utilisateur/mobile/updateUser?id="+id+"&Nom="+Nom+"&Preom="+Prenom+"&Password="+Password+"&Email="+Email;
+    public static void EditUser(int id, String nom, String prenom, String telephone,int cin, String password, String email) {
+        String url = Statics.BASE_URL+"utilisateur/mobile/updateUser?id="+id+"&Nom="+nom+"&prenom="+prenom+"&telephone="+telephone+"&cin="+cin+"&Password="+password+"&Email="+email;
         MultipartRequest req = new MultipartRequest();
         req.setUrl(url);
         req.setPost(true);
         req.addArgument("id",String.valueOf(SessionManager.getId()));
-        req.addArgument("Nom",Nom);
-        req.addArgument("Prenom",Prenom);
-        req.addArgument("Password",Password);
-        req.addArgument("Email",Email);
-        System.out.println(Email);
+        req.addArgument("Nom",nom);
+        req.addArgument("Prenom",prenom);
+        req.addArgument("Telephone",telephone);
+        req.addArgument("Cin",String.valueOf(SessionManager.getCin()));
+        req.addArgument("Password",password);
+        req.addArgument("Email",email);
+        System.out.println(email);
         req.addResponseListener((response)-> {
             
             byte[] data = (byte[]) response.getMetaData();
@@ -185,6 +182,11 @@ public class UserService {
         });
         NetworkManager.getInstance().addToQueueAndWait(req);
     }
+    
+    
+    
+    
+      
 
  
     public String getPasswordByEmail(String email, Resources rs ) {
